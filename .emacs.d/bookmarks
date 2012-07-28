@@ -1,0 +1,25 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("init"
+ (filename . "~/.emacs.d/init.el")
+ (front-context-string . "\n\n\n\n\n(custom-set")
+ (rear-context-string . "init_version\")\n\n")
+ (position . 1634))
+("org-capture-last-stored-marker"
+ (filename . "c:/ayoub/docs/org/tasks.org")
+ (front-context-string . "*** TODO dale\n**")
+ (rear-context-string . "artini\n*** Otro\n")
+ (position . 32))
+("org-refile-last-stored"
+ (filename . "c:/ayoub/docs/org/tasks.org")
+ (front-context-string . "*** TODO dale\n**")
+ (rear-context-string . "artini\n*** Otro\n")
+ (position . 32))
+("org-capture-last-stored"
+ (filename . "c:/ayoub/docs/org/tasks.org")
+ (front-context-string)
+ (rear-context-string . "** Productivity\n")
+ (position . 62))
+)

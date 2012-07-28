@@ -1,0 +1,24 @@
+cd ..
+ls
+cd ../config/
+ls
+cd .emacs.d/
+ls
+mkdir packages
+cd packages/
+ls
+ls
+mkdir mysnippets
+ls
+cd mysnippets/
+mkdir sql-mode
+mkdir cc-mode
+mkdir c++-mode
+cd packages/
+ls
+cd ~
+cd ~
+pwd
+cd .emacs.d/packages/mysnippets/
+pwd
+exit

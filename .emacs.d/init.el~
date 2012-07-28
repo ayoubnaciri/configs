@@ -1,0 +1,93 @@
+; -*- coding: utf-8 -*-
+
+(add-to-list 'load-path 
+  (file-name-directory (or load-file-name buffer-file-name)))
+(add-to-list 'load-path 
+  (concat (
+    file-name-directory (or load-file-name buffer-file-name)) 
+    "packages"))
+
+;; Tool-bar turned-off as soon as possible so the user cannot see it
+;; TODO move to settints_init
+(tool-bar-mode 0) 
+
+;; Load packages
+(load "keybinding_init")
+;(load "orgmode_init")
+;(load "settings_init")
+
+(load-theme 'tango-dark t)
+;----------------------------------- minibuffer abbrev
+(define-abbrev-table 'my-minibuffer-abbrev-table
+  '(
+    ("dk"  "describe-key")
+    ("dv"   "describe-variable")
+    ("dm"  "describe-mode")
+    ("df"   "descr   ibe-function")
+    ))
+
+(add-hook
+ 'minibuffer-setup-hook
+ '(lambda ()
+    (abbrev-mode 1)
+    (setq local-abbrev-table my-minibuffer-abbrev-table)))
+
+(defadvice minibuffer-complete
+  (before my-minibuffer-complete activate)
+  (expand-abbrev))
+;;-------------------------------------------------
+
+;; Turn on Open Recent menu under File menu before "Close" item
+;; (Why here? because the File menu is initialized in init_clean_menus.el)
+(require 'recentf)
+(setq recentf-menu-before "Close")
+(setq recentf-save-file (concat user-emacs-directory ".recentf"))
+(recentf-mode 1)
+
+;; Initialize emacs server if it is not already running
+;(require 'server)
+;(if (not (eq t (server-running-p server-name)))
+;    (server-start))
+
+;; ---------------------- AYB --------------------------
+(global-linum-mode t) ; line numbers
+(setq inhibit-splash-screen t)
+(setq-default indent-tabs-mode nil)
+
+
+;;------------------ TO REMOVE -------------
+;(load "init_version")
+
+; Refiling C-c C-w
+;  This allows for file like pathing for refiling and lets me pick heading and subheading (level <= 2)
+(setq org-refile-use-outline-path t)
+;; (setq org-refile-targets (quote ((nil :maxlevel . 2))))
+(setq org-refile-targets (quote ((nil :maxlevel . 2)
+				 ("c:/ayoub/docs/org/tasks.org" :maxlevel . 3)
+				 ("c:/ayoub/docs/org/refile.org" :maxlevel . 2)
+				)))
+
+(setq  '(org-capture-templates (quote (
+                                 ("t" "new task" entry (file+headline "c:/ayoub/docs/org/tasks.org" "Projects") "* TODO %^{dimelo:}")))))
+
+;;  '(org-capture-templates (quote (
+;; ("t" "Todo Item" entry (file+headline "c:/ayoub/docs/org/tasks.org" "Projects") 
+;;   "* %^{Description}  %? ") 
+;; ("s" "schedule task" entry (file+headline "c:/ayoub/docs/org/refile.org" "Unfiled") "* TODO %^{task} 
+;; SCHEDULED: %^t"))))
+
+
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ ;; '(org-capture-templates (quote (("n" "new task" entry (file+headline "c:/ayoub/docs/org/tasks.org" "Projects") "* TODO %^{dimelo:}")))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was
+ added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
